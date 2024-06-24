@@ -19,7 +19,7 @@ func (n Node) String() string {
 	return fmt.Sprintf("%d", n.value)
 }
 
-func (l *LinkedList) add(value int) {
+func (l *LinkedList) Add(value int) {
 	node := new(Node)
 	node.value = value
 
@@ -34,7 +34,14 @@ func (l *LinkedList) add(value int) {
 	}
 }
 
-func (l LinkedList) get(value int) *Node {
+func (l *LinkedList) AddFirst(value int) {
+	node := new(Node)
+	node.value = value
+	node.next = l.head
+	l.head = node
+}
+
+func (l LinkedList) Get(value int) *Node {
 	for iterator := l.head; iterator != nil; iterator = iterator.next {
 		if iterator.value == value {
 			return iterator
@@ -43,7 +50,7 @@ func (l LinkedList) get(value int) *Node {
 	return nil
 }
 
-func (l *LinkedList) remove(value int) {
+func (l *LinkedList) Remove(value int) {
 
 	var previous *Node
 
@@ -68,19 +75,4 @@ func (l LinkedList) String() string {
 		sb.WriteString(fmt.Sprintf("%s ", iterator))
 	}
 	return sb.String()
-}
-
-func main() {
-	l := LinkedList{}
-	l.add(1)
-	l.add(2)
-	l.add(3)
-	l.add(4)
-	fmt.Println(l)
-
-	l.remove(4)
-	l.remove(1)
-
-	fmt.Println(l)
-
 }
