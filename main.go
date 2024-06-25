@@ -2,26 +2,26 @@ package main
 
 import (
 	"fmt"
-	"go_ds_algos/linked_list"
+	"go_ds_algos/binary_search_tree"
 )
 
 func main() {
 	// Create an instance of LinkedList
-	l := linked_list.LinkedList{}
+	n := &binary_search_tree.Node{Value: 1, LeftChild: nil, RightChild: nil}
+	n.LeftChild = &binary_search_tree.Node{Value: 0, LeftChild: nil, RightChild: nil}
+	n.RightChild = &binary_search_tree.Node{Value: 5, LeftChild: nil, RightChild: nil}
+	b := binary_search_tree.BinarySearchTree{Root: n, Len: 1}
+	fmt.Println(b)
 
-	// Adding elements to the linked list
-	l.Add(1)
-	l.Add(2)
-	l.Add(3)
-	l.Add(4)
-	fmt.Println("LinkedList after Adding elements:", l)
+	b.Add(2)
+	b.Add(4)
+	b.Add(10)
 
-	// Removing elements from the linked list
-	l.Remove(4)
-	l.Remove(1)
-	fmt.Println("LinkedList after removing elements:", l)
+	fmt.Println(b)
 
-	// Adding element to the beginning of the linked list
-	l.AddFirst(1)
-	fmt.Println("LinkedList after Adding element to the beginning:", l)
+	node, res := b.Search(10)
+
+	fmt.Println(node, res)
+
+	fmt.Println(b.Search(19))
 }
