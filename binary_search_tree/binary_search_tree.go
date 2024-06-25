@@ -121,3 +121,17 @@ func (b BinarySearchTree) inOrderTraversalByNode(sb *strings.Builder, root *Node
 	sb.WriteString(fmt.Sprintf("%s ", root))
 	b.inOrderTraversalByNode(sb, root.RightChild)
 }
+
+func (b *BinarySearchTree) InvertTree() {
+	b.Root = b.invertTreeByNode(b.Root)
+}
+
+func (b *BinarySearchTree) invertTreeByNode(root *Node) *Node {
+	if root == nil {
+		return nil
+	}
+	root.LeftChild, root.RightChild = root.RightChild, root.LeftChild
+	b.invertTreeByNode(root.LeftChild)
+	b.invertTreeByNode(root.RightChild)
+	return root
+}

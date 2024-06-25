@@ -11,7 +11,7 @@ func main() {
 	n.LeftChild = &binary_search_tree.Node{Value: 0, LeftChild: nil, RightChild: nil}
 	n.RightChild = &binary_search_tree.Node{Value: 5, LeftChild: nil, RightChild: nil}
 	b := binary_search_tree.BinarySearchTree{Root: n, Len: 1}
-	fmt.Println(b)
+	//fmt.Println(b)
 
 	b.Add(2)
 	b.Add(4)
@@ -19,15 +19,18 @@ func main() {
 
 	fmt.Println(b)
 
-	node, res := b.Search(10)
+	//node, res := b.Search(10)
 
-	fmt.Println(node, res)
+	//fmt.Println(node, res)
 
-	fmt.Println(b.Search(19))
+	//fmt.Println(b.Search(19))
 
-	b.Remove(10)
-	b.Remove(4)
+	//b.Remove(10)
+	//b.Remove(4)
 
+	//fmt.Println(b)
+
+	b.InvertTree()
 	fmt.Println(b)
 
 }
