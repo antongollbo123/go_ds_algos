@@ -72,6 +72,47 @@ func (b BinarySearchTree) SearchByNode(root *Node, value int) (*Node, bool) {
 	}
 }
 
+func (b *BinarySearchTree) Remove(value int) {
+	b.Root = b.RemoveByNode(b.Root, value)
+	if b.Root != nil {
+		b.Len--
+	}
+}
+
+func (b *BinarySearchTree) RemoveByNode(root *Node, value int) *Node {
+	if root == nil {
+		return nil
+	}
+
+	if value < root.Value {
+		root.LeftChild = b.RemoveByNode(root.LeftChild, value)
+	} else if value > root.Value {
+		root.RightChild = b.RemoveByNode(root.RightChild, value)
+	} else {
+		// Case 1: No child or only one child
+		if root.LeftChild == nil {
+			return root.RightChild
+		} else if root.RightChild == nil {
+			return root.LeftChild
+		}
+
+		// Case 2: Node with two children
+		temp := b.minValueNode(root.RightChild)
+		root.Value = temp.Value
+		root.RightChild = b.RemoveByNode(root.RightChild, temp.Value)
+	}
+
+	return root
+}
+
+func (b *BinarySearchTree) minValueNode(node *Node) *Node {
+	current := node
+	for current.LeftChild != nil {
+		current = current.LeftChild
+	}
+	return current
+}
+
 func (b BinarySearchTree) inOrderTraversalByNode(sb *strings.Builder, root *Node) {
 	if root == nil {
 		return

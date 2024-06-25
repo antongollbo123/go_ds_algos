@@ -24,4 +24,10 @@ func main() {
 	fmt.Println(node, res)
 
 	fmt.Println(b.Search(19))
+
+	b.Remove(10)
+	b.Remove(4)
+
+	fmt.Println(b)
+
 }
